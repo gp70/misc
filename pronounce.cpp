@@ -5,10 +5,11 @@
 using namespace std;
 
 // Opens file
+/*
 ifstream openFile()
 {
-	ifstream fin("cmudict.0.7a");
-	if (fin.fail())
+	ifstream dict("cmudict.0.7a");
+	if (dict.fail())
 	{
 		cerr << "File cannot be opened for reading." << "\n";
 		//exit if fail
@@ -21,20 +22,34 @@ ifstream openFile()
 	while(junk != ";;;   - file name is major version; vers/rev information "
 				  "is now in the header")
 	{
-		getline(fin,junk);
+		getline(dict,junk);
 	}
 
 	// Finishing reading past file header
-	getline(fin,junk);
-	getline(fin,junk);
+	getline(dict,junk);
+	getline(dict,junk);
 
-	return fin;
+	return dict;
 }
+*/
 
 // Checks if in dictionary
-bool inDict(ifstream& dict, string word)
+bool inDict(string word)
 {
 	string test;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 	while(getline(dict,test))
 	{
 		if(test[0] == word[0])
@@ -72,10 +87,23 @@ void splitOnSpace(string s, string& before, string& after)
 }
 
 // Gets pronunciation as string
-string getPronunciation(ifstream& dict, string word)
+string getPronunciation(string word)
 {
 	string full;
 	string match;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 	while(getline(dict,full))
 	{
 		if(full[0] == word[0])
@@ -95,11 +123,24 @@ string getPronunciation(ifstream& dict, string word)
 
 // Gets identical words as string
 // Space separated
-string getIdentical(ifstream& dict, string word, string pro)
+string getIdentical(string word, string pro)
 {
 	string full;
 	string list = "";
 	string match;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 	while(getline(dict,full))
 	{
 		// Optimizes, reducing checks for matches to 1/26th
@@ -120,7 +161,7 @@ string getIdentical(ifstream& dict, string word, string pro)
 
 // Gets words that can be obtained by adding a phoneme
 // Space separated
-string getAdd(ifstream& dict, string word, string pro)
+string getAdd(string word, string pro)
 {
 	string full;
 	string matchword;
@@ -134,6 +175,19 @@ string getAdd(ifstream& dict, string word, string pro)
 	bool loop = true;
 	int test = 0;
 	int size = 0;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 	string pList[] = {"AA0","AA1","AA2","AE0","AE1","AE2","AH0","AH1","AH2","AO0","AO1","AO2",
 					  "AW0","AW1","AW2","AY0","AY1","AY2","B","CH","D","DH","EH0","EH1","EH2",
 					  "ER","EY0","EY1","EY2","F","G","HH","IH0","IH1","IH2","IY0","IY1","IY2",
@@ -195,7 +249,7 @@ string getAdd(ifstream& dict, string word, string pro)
 
 // Gets words that can be obtained by removing a phoneme
 // Space separated
-string getRemove(ifstream& dict, string word, string pro)
+string getRemove(string word, string pro)
 {
 	string full;
 	string matchword;
@@ -209,6 +263,19 @@ string getRemove(ifstream& dict, string word, string pro)
 	int test = 0;
 	int size = 0;
 	bool loop = true;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 	while(getline(dict,full))
 	{
 		matchword = full.substr(0,full.find(" "));
@@ -253,7 +320,7 @@ string getRemove(ifstream& dict, string word, string pro)
 
 // Gets words that can be obtained by replacing a phoneme
 // Space separated
-string getReplace(ifstream& dict, string word, string pro)
+string getReplace(string word, string pro)
 {
 	string full;
 	string matchword;
@@ -276,6 +343,19 @@ string getReplace(ifstream& dict, string word, string pro)
 	int size2 = 0;
 	bool loop = true;
 	bool repeat = false;
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 
 	// Fills proArr up to number of phonemes
 
@@ -299,7 +379,7 @@ string getReplace(ifstream& dict, string word, string pro)
 	// Gets list of identical words
 	// Used to exclude extras
 
-	identical = getIdentical(dict,word,pro);
+	identical = getIdentical(word,pro);
 
 	// Fills identArr up to number of identical words
 
@@ -320,7 +400,17 @@ string getReplace(ifstream& dict, string word, string pro)
 	}
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
+
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
 
 	while(getline(dict,full))
 	{
@@ -340,9 +430,9 @@ string getReplace(ifstream& dict, string word, string pro)
 				proReplace += proArr[size - 1];
 				if ((matchpro == proReplace) && (matchword != word))
 				{
-					for (string s : identArr)
+					for (int l = 0; l < 10; l++)
 					{
-						if (matchword == s)
+						if (matchword == identArr[l])
 							repeat = true;
 					}
 					if (!repeat)
@@ -350,9 +440,9 @@ string getReplace(ifstream& dict, string word, string pro)
 				}
 				else if ((proReplace[proReplace.length() - 1] == ' ') && (matchpro == proReplace.substr(0,proReplace.length() - 2)) && (matchword != word))
 				{
-					for (string s : identArr)
+					for (int l = 0; l < 10; l++)
 					{
-						if (matchword == s)
+						if (matchword == identArr[l])
 							repeat = true;
 					}
 					if (!repeat)
@@ -371,9 +461,21 @@ string getReplace(ifstream& dict, string word, string pro)
 // Prints string with pronunciation of word
 void pronounce(string word)
 {
-	ifstream dict = openFile();
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	if (!inDict(dict,word))
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	if (!inDict(word))
 	{
 		cout << "Not found" << "\n";
 		return;
@@ -382,9 +484,9 @@ void pronounce(string word)
 	// Resetting dict
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
 
-	cout << "Pronunciation	: " << getPronunciation(dict,word) << "\n";
+	cout << "Pronunciation	: " << getPronunciation(word) << "\n";
 
 }
 
@@ -393,9 +495,21 @@ void identical(string word)
 {
 	string pro;
 
-	ifstream dict = openFile();
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	if (!inDict(dict,word))
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	if (!inDict(word))
 	{
 		cout << "Not found" << "\n";
 		return;
@@ -404,14 +518,34 @@ void identical(string word)
 	// Resetting dict
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	pro = getPronunciation(dict,word);
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	pro = getPronunciation(word);
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	cout << "Identical	: " << getIdentical(dict,word,pro) << "\n";
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	cout << "Identical	: " << getIdentical(word,pro) << "\n";
 
 }
 
@@ -419,9 +553,21 @@ void identical(string word)
 void add(string word)
 {
 	string pro;
-	ifstream dict = openFile();
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	if(!inDict(dict,word))
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	if(!inDict(word))
 	{
 		cout << "Not found" << "\n";
 		return;
@@ -430,23 +576,55 @@ void add(string word)
 	// Resetting dict
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	pro = getPronunciation(dict,word);
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	pro = getPronunciation(word);
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	cout << "Add phoneme	: " << getAdd(dict,word,pro) << "\n";
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	cout << "Add phoneme	: " << getAdd(word,pro) << "\n";
 }
 
 // Prints string of words obtained by removing a phoneme from word
 void remove(string word)
 {
 	string pro;
-	ifstream dict = openFile();
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	if(!inDict(dict,word))
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	if(!inDict(word))
 	{
 		cout << "Not found" << "\n";
 		return;
@@ -455,23 +633,55 @@ void remove(string word)
 	// Resetting dict
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	pro = getPronunciation(dict,word);
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	pro = getPronunciation(word);
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	cout << "Remove phoneme	: " << getRemove(dict,word,pro) << "\n";
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	cout << "Remove phoneme	: " << getRemove(word,pro) << "\n";
 }
 
 // Prints string of words obtained by replacing a phoneme in word
 void replace(string word)
 {
 	string pro;
-	ifstream dict = openFile();
+	ifstream dict("cmudict.0.7a");
+	string junk;
+	string comment;
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	if(!inDict(dict,word))
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	if(!inDict(word))
 	{
 		cout << "Not found" << "\n";
 		return;
@@ -480,14 +690,34 @@ void replace(string word)
 	// Resetting dict
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	pro = getPronunciation(dict,word);
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	pro = getPronunciation(word);
 
 	dict.close();
-	dict = openFile();
+	dict.open("cmudict.0.7a");
+	// Reading past most of file header
+	while(junk != ";;;   - file name is major version; vers/rev information "
+				  "is now in the header")
+	{
+		getline(dict,junk);
+	}
 
-	cout << "Replace phoneme	: " << getReplace(dict,word,pro) << "\n";
+	// Finishing reading past file header
+	getline(dict,junk);
+	getline(dict,junk);
+
+	cout << "Replace phoneme	: " << getReplace(word,pro) << "\n";
 }
 
 // Main function
@@ -498,7 +728,7 @@ int main()
 
 	cout << "Input a word: ";
 	// Waits for word input
-	cin >> word;
+	word = "plants";
 
 	// Basically word = word.upper()
 	for (int i = 0; (unsigned) i < word.length(); ++i)
