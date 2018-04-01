@@ -399,19 +399,6 @@ string getReplace(string word, string pro, string identical)
 		size2++;
 	}
 
-	dict.close();
-	dict.open("cmudict.0.7a");
-	// Reading past most of file header
-	while(junk != ";;;   - file name is major version; vers/rev information "
-				  "is now in the header")
-	{
-		getline(dict,junk);
-	}
-
-	// Finishing reading past file header
-	getline(dict,junk);
-	getline(dict,junk);
-
 	while(getline(dict,full))
 	{
 		matchword = full.substr(0,full.find(" "));
