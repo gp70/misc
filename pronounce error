@@ -1,0 +1,85 @@
+In file included from /usr/include/c++/5/ios:42:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/bits/ios_base.h: In copy constructor ‘std::basic_ios<char>::basic_ios(const std::basic_ios<char>&)’:
+/usr/include/c++/5/bits/ios_base.h:855:5: error: ‘std::ios_base::ios_base(const std::ios_base&)’ is private
+     ios_base(const ios_base&);
+     ^
+In file included from /usr/include/c++/5/ios:44:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/bits/basic_ios.h:67:11: error: within this context
+     class basic_ios : public ios_base
+           ^
+In file included from /home/gareth/135 notes/projects/pronounce.cpp:3:0:
+/usr/include/c++/5/fstream: In copy constructor ‘std::basic_ifstream<char>::basic_ifstream(const std::basic_ifstream<char>&)’:
+/usr/include/c++/5/fstream:455:11: note: synthesized method ‘std::basic_ios<char>::basic_ios(const std::basic_ios<char>&)’ first required here 
+     class basic_ifstream : public basic_istream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/5/ios:43:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/streambuf: In copy constructor ‘std::basic_filebuf<char>::basic_filebuf(const std::basic_filebuf<char>&)’:
+/usr/include/c++/5/streambuf:804:7: error: ‘std::basic_streambuf<_CharT, _Traits>::basic_streambuf(const std::basic_streambuf<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>]’ is private
+       basic_streambuf(const basic_streambuf&);
+       ^
+In file included from /home/gareth/135 notes/projects/pronounce.cpp:3:0:
+/usr/include/c++/5/fstream:72:11: error: within this context
+     class basic_filebuf : public basic_streambuf<_CharT, _Traits>
+           ^
+/usr/include/c++/5/fstream: In copy constructor ‘std::basic_ifstream<char>::basic_ifstream(const std::basic_ifstream<char>&)’:
+/usr/include/c++/5/fstream:455:11: note: synthesized method ‘std::basic_filebuf<char>::basic_filebuf(const std::basic_filebuf<char>&)’ first required here 
+     class basic_ifstream : public basic_istream<_CharT, _Traits>
+           ^
+/home/gareth/135 notes/projects/pronounce.cpp: In function ‘std::ifstream openFile()’:
+/home/gareth/135 notes/projects/pronounce.cpp:31:9: note: synthesized method ‘std::basic_ifstream<char>::basic_ifstream(const std::basic_ifstream<char>&)’ first required here 
+  return fin;
+         ^
+In file included from /usr/include/c++/5/ios:42:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/bits/ios_base.h: In member function ‘std::basic_ios<char>& std::basic_ios<char>::operator=(const std::basic_ios<char>&)’:
+/usr/include/c++/5/bits/ios_base.h:858:5: error: ‘std::ios_base& std::ios_base::operator=(const std::ios_base&)’ is private
+     operator=(const ios_base&);
+     ^
+In file included from /usr/include/c++/5/ios:44:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/bits/basic_ios.h:67:11: error: within this context
+     class basic_ios : public ios_base
+           ^
+In file included from /usr/include/c++/5/iostream:40:0,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/istream: In member function ‘std::basic_istream<char>& std::basic_istream<char>::operator=(const std::basic_istream<char>&)’:
+/usr/include/c++/5/istream:58:11: note: synthesized method ‘std::basic_ios<char>& std::basic_ios<char>::operator=(const std::basic_ios<char>&)’ first required here 
+     class basic_istream : virtual public basic_ios<_CharT, _Traits>
+           ^
+In file included from /home/gareth/135 notes/projects/pronounce.cpp:3:0:
+/usr/include/c++/5/fstream: In member function ‘std::basic_ifstream<char>& std::basic_ifstream<char>::operator=(const std::basic_ifstream<char>&)’:
+/usr/include/c++/5/fstream:455:11: note: synthesized method ‘std::basic_istream<char>& std::basic_istream<char>::operator=(const std::basic_istream<char>&)’ first required here 
+     class basic_ifstream : public basic_istream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/5/ios:43:0,
+                 from /usr/include/c++/5/ostream:38,
+                 from /usr/include/c++/5/iostream:39,
+                 from /home/gareth/135 notes/projects/pronounce.cpp:1:
+/usr/include/c++/5/streambuf: In member function ‘std::basic_filebuf<char>& std::basic_filebuf<char>::operator=(const std::basic_filebuf<char>&)’:
+/usr/include/c++/5/streambuf:807:7: error: ‘std::basic_streambuf<_CharT, _Traits>& std::basic_streambuf<_CharT, _Traits>::operator=(const std::basic_streambuf<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>]’ is private
+       operator=(const basic_streambuf&);
+       ^
+In file included from /home/gareth/135 notes/projects/pronounce.cpp:3:0:
+/usr/include/c++/5/fstream:72:11: error: within this context
+     class basic_filebuf : public basic_streambuf<_CharT, _Traits>
+           ^
+/usr/include/c++/5/fstream: In member function ‘std::basic_ifstream<char>& std::basic_ifstream<char>::operator=(const std::basic_ifstream<char>&)’:
+/usr/include/c++/5/fstream:455:11: note: synthesized method ‘std::basic_filebuf<char>& std::basic_filebuf<char>::operator=(const std::basic_filebuf<char>&)’ first required here 
+     class basic_ifstream : public basic_istream<_CharT, _Traits>
+           ^
+/home/gareth/135 notes/projects/pronounce.cpp: In function ‘std::__cxx11::string getReplace(std::ifstream&, std::__cxx11::string, std::__cxx11::string)’:
+/home/gareth/135 notes/projects/pronounce.cpp:323:7: note: synthesized method ‘std::basic_ifstream<char>& std::basic_ifstream<char>::operator=(const std::basic_ifstream<char>&)’ first required here 
+  dict = openFile();
