@@ -572,10 +572,8 @@ int main()
 	string word;
 	string pro;
 	string ident;
-
-	cout << "Input a word: ";
 	// Waits for word input
-	word = "plants";
+	word = "zanzibar";
 
 	// Basically word = word.upper()
 	for (int i = 0; (unsigned) i < word.length(); ++i)
@@ -584,6 +582,11 @@ int main()
 
 	// Calls functions to print information about word
 	pro = getPronunciation(word);
+	if (pro == "Error: word not found")
+	{
+		cout << "Not found";
+		return 0;
+	}
 	cout << "Pronunciation	: " << pro << "\n";
 	ident = getIdentical(word, pro);
 	cout << "Identical	: " << ident << "\n";
